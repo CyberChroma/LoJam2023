@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float speed = 10;
-    private Rigidbody2D rb;
+
+    [HideInInspector] public Rigidbody2D rb;
+    private PlayerTactorBeam playerTractorBeam;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerTractorBeam = GetComponentInChildren<PlayerTactorBeam>(true);
     }
 
     // Update is called once per frame
@@ -19,6 +22,10 @@ public class PlayerMove : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector2 direction = new Vector2(h, v).normalized;
-        rb.AddForce(direction * speed, ForceMode2D.Impulse);
+        if (playerTractorBeam.activePullObject) {
+            rb.AddForce(direction * speed / 2, ForceMode2D.Impulse);
+        } else {
+            rb.AddForce(direction * speed, ForceMode2D.Impulse);
+        }
     }
 }

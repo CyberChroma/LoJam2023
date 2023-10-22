@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TrendObject
   layers:
   - Default
   - TransparentFX
@@ -47,9 +48,9 @@ TagManager:
   - name: Environment
     uniqueID: 3892360743
     locked: 0
-  - name: Player
-    uniqueID: 1602464251
-    locked: 0
   - name: Objects
     uniqueID: 383699673
+    locked: 0
+  - name: Player
+    uniqueID: 1602464251
     locked: 0
