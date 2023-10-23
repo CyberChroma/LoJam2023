@@ -1,0 +1,26 @@
+Working with the TrendFeed
+
+TrendFeed
+- The TrendFeed singleton exists within LiveFeedPanel in the LiveFeed Canvas object
+- The TrendFeed will randomly select objects to go trending.
+- The TrendFeed has settings for how long objects can be trending.
+- The TrendFeed has settings for the max number of trending objects.
+
+- The TrendFeed spawns "Short TrendCards" and "Long TrendCards"
+- These are purely based on how long the objects are trending
+- There are four settings to control the times that dictate which type of card will spawn
+Ex. A trend time of 10s would generate a short card, where 20s generates a long card
+
+- The TrendFeed has four public functions for querying the TrendFeed
+- The TrendFeed starts populating trends as soon as it is active. (This can be changed in the future)
+- The TrendFeed must be manually stopped. It will clear everything by the end of the next update.
+
+CollectableObjectInfo - ScriptableObjects
+- These objects are used to identify the GameObjects collected by a UFO.
+- These can be created through the Asset > Create menu
+
+CollectableObjectList - ScriptableObject
+- This is a singleton object per scene to hold the list of CollectableObjectInfo objects.
+- The TrendFeed singleton uses this to know what objects can go trending during gameplay.
+- Ideally, all CollectableObjectInfo scriptable objects are added to its list.
+- If there were multiple scenes / levels in the future, each scene can have its own CollectableObjectList object 
