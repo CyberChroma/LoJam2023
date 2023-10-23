@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerTactorBeam : MonoBehaviour
 {
@@ -19,10 +20,12 @@ public class PlayerTactorBeam : MonoBehaviour
     public GameObject activePullObject;
     public Transform activePosition;
 
+    private ScoreManager scoreManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     private void OnDisable() {
@@ -52,10 +55,11 @@ public class PlayerTactorBeam : MonoBehaviour
 
     IEnumerator WaitToPull() {
         yield return new WaitForSeconds(pullTime);
-        activePullObject.GetComponent<TrendObject>().isDisappearing = true;
+        TrendObject trendObject = activePullObject.GetComponent<TrendObject>();
+        trendObject.isDisappearing = true;
         activePullObject.GetComponent<Collider2D>().enabled = false;
+        scoreManager.AddScore(trendObject.points);
         activePullObject = null;
-        yield return new WaitForSeconds(1f);
-        Destroy(activePullObject);
+        Destroy(activePullObject, 1);
     }
 }

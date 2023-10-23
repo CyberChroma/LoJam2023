@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class TrendObject : MonoBehaviour
 {
+    public int points = 10;
+
+    [HideInInspector] public bool isDisappearing;
+
     private Rigidbody2D rb;
     private PlayerTactorBeam playerTactorBeam;
-
-    public bool isDisappearing;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerTactorBeam = FindObjectOfType<PlayerTactorBeam>();
+        playerTactorBeam = FindObjectOfType<PlayerTactorBeam>(true);
     }
 
     // Update is called once per frame
