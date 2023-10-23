@@ -61,6 +61,9 @@ public class TrendFeed : MonoBehaviour
     RectTransform panelRect;
     HorizontalLayoutGroup horizontalLayoutGroup;
 
+    bool isActive = true;
+    bool stopRequested = false;
+
     //Controls the cooldown for placing new TrendCards.
     float trendCooldownTimer = 0;
 
@@ -73,15 +76,13 @@ public class TrendFeed : MonoBehaviour
     //The width of a "short" TrendCard
     int shortCardWidth;
 
-    //The absolute min and max amount of time a trend can be active.
-    int minTimerSeconds;
-    int maxTimerSeconds;
 
     private void Awake()
     {
-        maxTrendCooldownLength = Mathf.Max(minTrendCooldownLength + 1, maxTrendCooldownLength);
         panelRect = GetComponent<RectTransform>();
         horizontalLayoutGroup = GetComponent<HorizontalLayoutGroup>();
+        
+        maxTrendCooldownLength = Mathf.Max(minTrendCooldownLength + 1, maxTrendCooldownLength);
 
         longCardWidth = Mathf.FloorToInt(panelRect.rect.width * 0.3f);
         shortCardWidth = Mathf.FloorToInt(panelRect.rect.width * 0.2f);
@@ -99,14 +100,13 @@ public class TrendFeed : MonoBehaviour
             trendOptions.Add(obj.name);
         }
     }
-    private void Start()
-    {
-        minTimerSeconds = minShortTimerSeconds;
-        maxTimerSeconds = maxLongTimerSeconds;
-    }
-
     private void Update()
     {
+        if (!isActive)
+        {
+            return;
+        }
+
         if (trendCooldownTimer <= 0)
         {
             if (activeCards.Count < maxActiveTrends)
@@ -134,6 +134,13 @@ public class TrendFeed : MonoBehaviour
             }
         }
 
+        if (stopRequested)
+        {
+            ClearAllTrendItems();
+            isActive = false;
+            stopRequested = false;
+        }
+
         if (trendCooldownTimer > 0)
             trendCooldownTimer -= Time.deltaTime;
     }
@@ -147,7 +154,13 @@ public class TrendFeed : MonoBehaviour
         TrendCard newTrendCard;
         
         int randObjIndex = Random.Range(0, trendOptions.Count);
-        int objectLifetime = Random.Range(minTimerSeconds, maxTimerSeconds+1);
+        int objectLifetime = 0;
+
+        if (Random.value > 0.5f)
+            objectLifetime = Random.Range(minShortTimerSeconds, maxShortTimerSeconds);
+
+        else
+            objectLifetime = Random.Range(minLongTimerSeconds, maxLongTimerSeconds);
 
         //There are no options to choose from.
         if (trendOptions.Count == 0)
@@ -192,6 +205,20 @@ public class TrendFeed : MonoBehaviour
     }
 
     /// <summary>
+    /// Clear the current list of trending items. To be called when completing a level.
+    /// </summary>
+    void ClearAllTrendItems()
+    {
+        foreach (KeyValuePair<string, TrendCard> trendPair in activeCards)
+        {
+            RemoveTrendItem(trendPair.Value);
+        }
+
+        activeCards.Clear();
+        pendingReturns.Clear();
+    }
+
+    /// <summary>
     /// Create a new TrendCard for the TrendFeed.
     /// </summary>
     /// <param name="cardPrefab"></param>
@@ -233,20 +260,6 @@ public class TrendFeed : MonoBehaviour
     }
 
     /// <summary>
-    /// Clear the current list of trending items. To be called when completing a level.
-    /// </summary>
-    public void ClearAllTrendItems()
-    {
-        foreach (KeyValuePair<string, TrendCard> trendPair in activeCards)
-        {
-            trendPair.Value.Deactivate();
-            //trendPair.Value.Card
-        }
-
-        activeCards.Clear();
-    }
-
-    /// <summary>
     /// Get the list of object names that are currently trending.
     /// </summary>
     /// <returns></returns>
@@ -280,5 +293,21 @@ public class TrendFeed : MonoBehaviour
     public bool IsObjectTrending(string objectName)
     {
         return activeCards.ContainsKey(objectName);
+    }
+
+    /// <summary>
+    /// Start the TrendFeed.
+    /// </summary>
+    public void StartTrendFeed()
+    {
+        isActive = true;
+    }
+
+    /// <summary>
+    /// Completely halts the TrendFeed and clears the active trends.
+    /// </summary>
+    public void StopTrendFeed()
+    {
+        stopRequested = true;
     }
 }
