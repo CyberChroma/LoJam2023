@@ -2187,6 +2187,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4474124451618621596, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962124807890943606, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697986072942902194, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: 0.0015619989
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697986072942902194, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.26559997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697986072942902194, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -1.5171725
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697986072942902194, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: -4.0960913
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697986072942902194, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 1.5177448
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697986072942902194, guid: 07e9988e491f1cd4ebe66258cf3cafaf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: -4.1012926
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -10,12 +10,14 @@ public class TrendObject : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerTactorBeam playerTactorBeam;
+    private PlayerMove playerMove;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerTactorBeam = FindObjectOfType<PlayerTactorBeam>(true);
+        playerMove = playerTactorBeam.GetComponentInParent<PlayerMove>();
     }
 
     // Update is called once per frame
@@ -24,8 +26,13 @@ public class TrendObject : MonoBehaviour
         if (isDisappearing) {
             Vector3 direction = playerTactorBeam.transform.position - transform.position;
             rb.angularVelocity = -playerTactorBeam.spinSpeed * 2;
-            rb.velocity = direction * playerTactorBeam.disappearPullVelocity;
-            rb.velocity = new Vector2(rb.velocity.x * 20, rb.velocity.y);
+            if (rb.position.y >= playerTactorBeam.transform.position.y) {
+                rb.velocity = Vector2.zero;
+                rb.position = playerTactorBeam.transform.position;
+            } else {
+                rb.velocity = direction * playerTactorBeam.disappearPullVelocity;
+                rb.velocity = new Vector2(rb.velocity.x * 20, Mathf.Abs(rb.velocity.y) * 2 + Mathf.Abs(playerMove.rb.velocity.y));
+            }
             transform.localScale *= 0.95f;
             rb.gravityScale = 0;
         } else {
