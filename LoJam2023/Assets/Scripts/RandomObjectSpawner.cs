@@ -59,4 +59,10 @@ public class RandomObjectSpawner : MonoBehaviour
             newTrendObject.transform.position = new Vector3(floorContactPoint.x, floorContactPoint.y, newTrendObject.transform.position.z);
         }
     }
+
+    public void ClearObjects() {
+        foreach (Transform childTransform in transform) {
+            Destroy(childTransform.gameObject);
+        }
+    }
 }
