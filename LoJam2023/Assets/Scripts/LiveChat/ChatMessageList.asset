@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97f3cd8d60cca94192e0f74dc1736e8, type: 3}
-  m_Name: Cow
+  m_Script: {fileID: 11500000, guid: 7270a8cbec4998b4fa1e43091e688183, type: 3}
+  m_Name: ChatMessageList
   m_EditorClassIdentifier: 
-  objectName: Cow
-  minNegativeScore: -1
-  maxNegativeScore: -10
-  minPositiveScore: 50
-  maxPositiveScore: 100
+  templateMessages:
+  - messageId: Laugh Message #1
+    messageBody: LOL
+    useObject: 0
+  - messageId: Object Message #1
+    messageBody: Get the {0}!
+    useObject: 1
