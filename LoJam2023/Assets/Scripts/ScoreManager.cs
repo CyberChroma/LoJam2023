@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour {
     public float currentScore = 0;
     public float[] levelThresholds;
     public float countSpeed = 50f; // Speed at which the score counts up
+    public TextMeshProUGUI scoreOutOfText;
 
     private float displayedScore = 0; // The score that's currently being displayed
     private int currentLevel = 1;
@@ -18,6 +19,7 @@ public class ScoreManager : MonoBehaviour {
         scoreText = GetComponent<TextMeshProUGUI>();
         levelSwitcher = FindObjectOfType<LevelSwitcher>();
         scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
+        scoreOutOfText.text = "/" + levelThresholds[currentLevel-1];
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class ScoreManager : MonoBehaviour {
         // Check for level threshold crossing
         if (currentLevel <= levelThresholds.Length && currentScore >= levelThresholds[currentLevel - 1]) {
             levelSwitcher.SwitchToLevel(currentLevel + 1);
+            scoreOutOfText.text = "/" + levelThresholds[currentLevel];
             currentLevel++;
         }
 
