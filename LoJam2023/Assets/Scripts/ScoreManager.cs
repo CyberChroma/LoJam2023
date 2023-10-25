@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour {
     void Start() {
         scoreText = GetComponent<TextMeshProUGUI>();
         levelSwitcher = FindObjectOfType<LevelSwitcher>();
-        scoreText.text = "Followers: " + Mathf.FloorToInt(displayedScore);
+        scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour {
             displayedScore = Mathf.Min(displayedScore + (countSpeed * Time.deltaTime), currentScore);
 
             // Update the text, converting the float to an int for display
-            scoreText.text = "Followers: " + Mathf.FloorToInt(displayedScore);
+            scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
 
             yield return null;
         }
