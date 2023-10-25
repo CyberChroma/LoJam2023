@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 /// <summary>
 /// Singleton Instance to manage the list of active TrendCards influencing Player Collectable score.
@@ -76,6 +77,12 @@ public class TrendFeed : MonoBehaviour
     //The width of a "short" TrendCard
     int shortCardWidth;
 
+    [Header("Subscriber Interface for Trends")]
+    [SerializeField]
+    UnityEvent<string> OnAddTrendEvent;
+
+    [SerializeField]
+    UnityEvent<string> OnRemoveTrendEvent;
 
     private void Awake()
     {
@@ -194,14 +201,17 @@ public class TrendFeed : MonoBehaviour
             }
         }
 
+        //Ensure the object appears at the back of the HorizontalLayoutGroup
         newTrendCard.gameObject.transform.SetAsLastSibling();
         newTrendCard.gameObject.SetActive(true);
-        newTrendCard.Activate(newTrendObject.name, objectScore, objectLifetime, RemoveTrendItem);
+        newTrendCard.Activate(newTrendObject.ObjectName, objectScore, objectLifetime, RemoveTrendItem);
         
-        activeCards.Add(newTrendObject.name, newTrendCard);
+        activeCards.Add(newTrendObject.ObjectName, newTrendCard);
         openFeedSpace -= horizontalLayoutGroup.spacing;
 
         trendCooldownTimer = Random.Range(minTrendCooldownLength, maxTrendCooldownLength);
+
+        OnAddTrendEvent.Invoke(newTrendObject.ObjectName);
     }
 
     /// <summary>
@@ -257,6 +267,7 @@ public class TrendFeed : MonoBehaviour
 
         openFeedSpace += horizontalLayoutGroup.spacing;
         pendingReturns.Enqueue(removeCard.ObjectName);
+        OnRemoveTrendEvent.Invoke(removeCard.ObjectName);
     }
 
     /// <summary>
