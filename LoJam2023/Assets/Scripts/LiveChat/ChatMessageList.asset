@@ -22,4 +22,7 @@ MonoBehaviour:
   - Hi streamerr
   - What
   - Next game
-  objectMessages: []
+  objectMessages:
+  - Get the {0}!
+  - Is that a {0}
+  - '{0}!!'

@@ -428,7 +428,7 @@ MonoBehaviour:
   chatMessageTemplates: {fileID: 11400000, guid: 73e5eeca7e3be2341a862cf40000a4ff, type: 2}
   chatTagColors:
   - {r: 1, g: 0, b: 0, a: 0}
-  maxChatMessageLines: 0
+  objectMessageChance: 0.2
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,6 +661,62 @@ PrefabInstance:
     - target: {fileID: 6406981285537725759, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
       propertyPath: m_Name
       value: TrendFeedPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnAddTrendEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnRemoveTrendEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnAddTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnAddTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 647450517}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnRemoveTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnAddTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnRemoveTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 647450517}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnAddTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnObjectStartTrending
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnRemoveTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnRemoveTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnObjectStopTrending
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnAddTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LiveChatFeed, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnRemoveTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LiveChatFeed, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnAddTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655270491744733011, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: OnRemoveTrendEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9002339067801905562, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
       propertyPath: m_AnchorMax.y
