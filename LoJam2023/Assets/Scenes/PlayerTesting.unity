@@ -749,7 +749,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: 2
   m_CullingMask:
@@ -1916,6 +1916,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1621720978}
+    - target: {fileID: 5415361336913482442, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415361336913482442, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6106874981061663656, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3894,6 +3902,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8909477791902911500, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8909477791902911500, guid: 7987bbbf2dc03e24f9a95ace87371f41, type: 3}
       propertyPath: m_SortingLayerID
       value: 1602464251
       objectReference: {fileID: 0}
@@ -4174,7 +4186,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.5
+  m_fontSize: 46.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4478,7 +4490,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 69.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4543,7 +4555,7 @@ MonoBehaviour:
   currentScore: 0
   levelThresholds:
   - 1000
-  - 10000
+  - 1
   countSpeed: 50
   scoreOutOfText: {fileID: 1601085169}
 --- !u!1 &1734195265
