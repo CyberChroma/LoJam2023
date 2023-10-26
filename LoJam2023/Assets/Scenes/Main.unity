@@ -425,9 +425,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chatMessagePrefab: {fileID: 5632415122704998087, guid: 8b62b82b6e826d04f8f204941880ba34, type: 3}
-  maxChatMessageLines: 0
+  chatMessageTemplates: {fileID: 11400000, guid: 73e5eeca7e3be2341a862cf40000a4ff, type: 2}
   chatTagColors:
   - {r: 1, g: 0, b: 0, a: 0}
+  maxChatMessageLines: 0
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0

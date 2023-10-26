@@ -19,14 +19,15 @@ public class LiveChatFeed : MonoBehaviour
     List<Color> chatTagColors;
 
     [SerializeField]
-    [Range(1, 5)]
-    int maxChatMessageLines;
+    [Range(0, 1)]
+    float objectMessageChance = 0.2f;
 
     //A quick reference to the current trending objects on-screen.
-    HashSet<string> activeTrendingObjects = new();
+    List<string> activeTrendingObjects = new();
 
     //Holds the full set of ChatMembers that can appear
     List<ChatMember> chatMembers = new();
+
 
     //Holds the full set of created ChatMessage objects
     Queue<GameObject> chatMessageObjectQueue = new();
@@ -77,8 +78,19 @@ public class LiveChatFeed : MonoBehaviour
         VerticalLayoutGroup panelVLG = GetComponent<VerticalLayoutGroup>();
 
         float panelHeight = panelRect.rect.height;
-
         float minMessageHeight = minMessageTextSize + chatMessagePrefab.GetComponent<TextMeshProUGUI>().margin.y * 2;
+
+        if (chatMessageTemplates == null)
+        {
+            Debug.LogError("LiveChatFeed is missing 'ChatMessageList' reference.");
+        }
+
+        if (chatMessagePrefab == null)
+        {
+            Debug.LogError("LiveChatFeed is missing 'ChatMessage' prefab reference.");
+        }
+
+        
 
         //Determine the maximum number of messages to display
         maxDisplayedMessages = 
@@ -170,26 +182,36 @@ public class LiveChatFeed : MonoBehaviour
     /// </summary>
     void GenerateChatMessage()
     {
+        //Generate the random ChatMember to deliver the message
         int chatMemberIdx = Random.Range(0, chatMembers.Count);
-        string messageAuthorName = chatMembers[chatMemberIdx].username;
-        string messageAuthorColor = chatMembers[chatMemberIdx].tagColorName;
+        string chatMemberName = chatMembers[chatMemberIdx].username;
+        string chatMemberColour = chatMembers[chatMemberIdx].tagColorName;
 
+        string chatMessageText = Random.value < objectMessageChance && activeTrendingObjects.Count > 0 ?
+            chatMessageTemplates.GetRandomObjectChatMessage(
+                activeTrendingObjects[Random.Range(0, activeTrendingObjects.Count)]) :
+            chatMessageTemplates.GetRandomChatMessage(0);
+
+        //Get the ChatMessage GameObject to display the message
         if (!chatMessageObjectQueue.TryDequeue(out GameObject newMessageObject))
         {
             newMessageObject = CreateChatMessageObject();
         }
 
+        //Hide the oldest chat message
         if (activeChatMessages.Count >= maxDisplayedMessages)
             HideChatMessageObject(activeChatMessages.Dequeue());
 
+        //Set the ChatMessage GameObject information
         newMessageObject.transform.SetAsLastSibling();
         newMessageObject.GetComponent<TextMeshProUGUI>().text = 
             string.Format(
-                "<color={0}>{1}</color>: Hello! {2}", 
-                messageAuthorColor, messageAuthorName, ++numMessagesGenerated);
+                "<color={0}>{1}</color>: {2}", 
+                chatMemberColour, chatMemberName, chatMessageText);
 
         newMessageObject.GetComponent<TextMeshProUGUI>().enabled = true;
         newMessageObject.SetActive(true);
+
         activeChatMessages.Enqueue(newMessageObject);
     }
 
@@ -199,7 +221,6 @@ public class LiveChatFeed : MonoBehaviour
     /// <param name="chatMessageObject"></param>
     void HideChatMessageObject(GameObject chatMessageObject)
     {
-        Debug.Log("Hide chat message");
         chatMessageObject.SetActive(false);
         chatMessageObjectQueue.Enqueue(chatMessageObject);
     }
@@ -210,6 +231,7 @@ public class LiveChatFeed : MonoBehaviour
     /// <param name="objectName"></param>
     public void OnObjectStartTrending(string objectName)
     {
+        Debug.Log(objectName);
         activeTrendingObjects.Add(objectName);
     }
 

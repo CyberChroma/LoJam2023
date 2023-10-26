@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7270a8cbec4998b4fa1e43091e688183, type: 3}
   m_Name: ChatMessageList
   m_EditorClassIdentifier: 
-  templateMessages:
-  - messageId: Laugh Message #1
-    messageBody: LOL
-    useObject: 0
-  - messageId: Object Message #1
-    messageBody: Get the {0}!
-    useObject: 1
+  positiveMessages:
+  - 
+  negativeMessages: []
+  neutralMessages:
+  - Hello LoJam!
+  - What planet is this?
+  - Is that a human?
+  - Hi streamerr
+  - What
+  - Next game
+  objectMessages: []
