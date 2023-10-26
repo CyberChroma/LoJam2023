@@ -4541,7 +4541,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScore: 0
-  levelThresholds: []
+  levelThresholds:
+  - 1000
+  - 10000
   countSpeed: 50
   scoreOutOfText: {fileID: 1601085169}
 --- !u!1 &1734195265
