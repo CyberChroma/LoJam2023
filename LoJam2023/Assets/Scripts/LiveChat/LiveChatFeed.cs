@@ -157,6 +157,7 @@ public class LiveChatFeed : MonoBehaviour
         RectTransform chatMessageRect = newChatMessage.GetComponent<RectTransform>();
         newChatMessage.transform.SetParent(gameObject.transform);
         chatMessageRect.localScale = Vector3.one;
+        chatMessageRect.transform.localPosition = Vector3.zero;
         chatMessageRect.sizeDelta = new Vector2(chatMessageRect.sizeDelta.x, messageRectHeight);
 
         return newChatMessage;

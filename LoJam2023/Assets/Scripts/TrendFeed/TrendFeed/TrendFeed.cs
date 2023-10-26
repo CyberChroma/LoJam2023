@@ -257,7 +257,7 @@ public class TrendFeed : MonoBehaviour
         TrendCard newTrendCard = cardObject.GetComponent<TrendCard>();
 
         cardObject.transform.SetParent(gameObject.transform);
-
+        cardObject.transform.localPosition = Vector3.zero;
         return newTrendCard;
     }
 
