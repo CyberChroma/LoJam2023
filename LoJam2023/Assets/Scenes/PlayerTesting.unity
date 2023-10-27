@@ -1915,34 +1915,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LiveChatCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1096951770561042687, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4794899810596901130, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 4794899810596901130, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4794899810596901130, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5415361336913482442, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1621720978}
-    - target: {fileID: 5415361336913482442, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
-      propertyPath: m_PlaneDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5415361336913482442, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6106874981061663656, guid: 1238145d810c6ac4abaac485119c03ea, type: 3}
       propertyPath: m_Pivot.x
       value: 0
