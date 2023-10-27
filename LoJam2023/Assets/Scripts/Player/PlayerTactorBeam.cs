@@ -21,11 +21,13 @@ public class PlayerTactorBeam : MonoBehaviour
     public Transform activePosition;
 
     private ScoreManager scoreManager;
+    private TrendFeed trendFeed;
 
     // Start is called before the first frame update
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
+        trendFeed = FindObjectOfType<TrendFeed>();
     }
 
     private void OnDisable() {
@@ -58,7 +60,11 @@ public class PlayerTactorBeam : MonoBehaviour
         TrendObject trendObject = activePullObject.GetComponent<TrendObject>();
         trendObject.isDisappearing = true;
         activePullObject.GetComponent<Collider2D>().enabled = false;
-        scoreManager.AddScore(trendObject.points);
+        int scoreToAdd = 0;
+        if (trendFeed.IsObjectTrending(trendObject.name)) {
+            scoreToAdd = trendFeed.GetTrendScoreForObject(trendObject.name);
+        }
+        scoreManager.AddScore(scoreToAdd);
         activePullObject = null;
         Destroy(activePullObject, 1);
     }

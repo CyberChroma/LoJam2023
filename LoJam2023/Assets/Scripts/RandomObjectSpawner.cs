@@ -28,7 +28,9 @@ public class RandomObjectSpawner : MonoBehaviour
     }
 
     void SpawnNewTrendObject() {
-        GameObject newTrendObject = Instantiate(trendObjects[Random.Range(0, trendObjects.Length)], transform);
+        int trendObjectChoice = Random.Range(0, trendObjects.Length);
+        GameObject newTrendObject = Instantiate(trendObjects[trendObjectChoice], transform);
+        newTrendObject.name = trendObjects[trendObjectChoice].name;
         do {
             newTrendObject.transform.position = new Vector2(Random.Range(-50f, 50f), 10f);
             SnapObjectToFloor(newTrendObject);
