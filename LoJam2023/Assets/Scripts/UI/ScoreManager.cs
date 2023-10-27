@@ -22,11 +22,6 @@ public class ScoreManager : MonoBehaviour {
         scoreOutOfText.text = "/" + levelThresholds[currentLevel-1];
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     public void AddScore(float scoreToAdd) {
         currentScore += scoreToAdd;
 

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TrendObject : MonoBehaviour
 {
-    public int points = 10;
-
     [HideInInspector] public bool isDisappearing;
 
     private Rigidbody2D rb;
