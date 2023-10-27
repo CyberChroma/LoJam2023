@@ -83,7 +83,10 @@ public class TrendFeed : MonoBehaviour
 
         maxTrendCooldownLength = Mathf.Max(minTrendCooldownLength + 1, maxTrendCooldownLength);
 
-        cardWidth = Mathf.FloorToInt(panelRect.rect.width / maxActiveTrends);
+        int totalPadding = horizontalLayoutGroup.padding.right * maxActiveTrends;
+        cardWidth = Mathf.FloorToInt((panelRect.rect.width - totalPadding) / maxActiveTrends);
+        Debug.Log(panelRect.rect.width);
+        Debug.Log(cardWidth);
 
         if (cardPrefab == null)
             Debug.LogError("Missing ShortPanel Prefab object.");
