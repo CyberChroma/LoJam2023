@@ -6,29 +6,32 @@ using UnityEngine;
 public class CollectableObjectInfo : ScriptableObject
 {
     [SerializeField]
-    string objectName;
+    string objectName = "";
 
     [SerializeField]
-    int minNegativeScore;
+    int minNegativeScore = 0;
 
     [SerializeField]
-    int maxNegativeScore;
+    int maxNegativeScore = 0;
 
     [SerializeField]
-    int minPositiveScore;
+    int minPositiveScore = 0;
 
     [SerializeField]
-    int maxPositiveScore;
+    int maxPositiveScore = 0;
 
-    public string ObjectName => objectName;
-    public int MinNegativeScore => minNegativeScore;
-    public int MaxNegativeScore => maxNegativeScore;
-    public int MinPositiveScore => minPositiveScore;
-    public int MaxPositiveScore => maxPositiveScore;
+    [SerializeField]
+    Sprite objectSprite = null;
+
+    public string ObjectName { get {return objectName; }}
+    public int MinNegativeScore { get { return minNegativeScore; } }
+    public int MaxNegativeScore { get { return maxNegativeScore; } }
+    public int MinPositiveScore {get {return minPositiveScore; }}
+    public int MaxPositiveScore { get { return maxPositiveScore; } }
+
+    public Sprite ObjectSprite { get { return objectSprite; } }
 
     private void OnValidate()
     {
-        minNegativeScore = Mathf.Min(Mathf.Max(maxNegativeScore, minNegativeScore), -1);
-        minPositiveScore = Mathf.Max(Mathf.Min(maxPositiveScore, minPositiveScore), 0);
     }
 }

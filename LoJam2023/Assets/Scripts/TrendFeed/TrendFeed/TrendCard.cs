@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events; 
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 /// <summary>
 /// Appears in the TrendFeed as a CollectableObject with a score modifier.
@@ -17,6 +18,9 @@ public class TrendCard: MonoBehaviour
 
     [SerializeField]
     GameObject scoreTextObj;
+
+    [SerializeField]
+    Image iconObj;
     
     RectTransform cardRect;
 
@@ -66,13 +70,14 @@ public class TrendCard: MonoBehaviour
     /// <param name="objectScore"></param>
     /// <param name="lifetime"></param>
     /// <param name="timeoutAction"></param>
-    public void Activate(string objectName, int objectScore, int lifetime, UnityAction<TrendCard> timeoutAction)
+    public void Activate(string objectName, int objectScore, int lifetime, Sprite objectImage, UnityAction<TrendCard> timeoutAction)
     {
         this.objectName = objectName;
         this.objectScore = objectScore;
         scoreText.text = objectScore.ToString();
         timeRemaining = lifetime;
         timeoutEvent.AddListener(timeoutAction);
+        iconObj.sprite = objectImage;
 
         if (nameText)
             nameText.text = objectName;

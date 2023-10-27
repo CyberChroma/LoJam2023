@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d97f3cd8d60cca94192e0f74dc1736e8, type: 3}
-  m_Name: Cow
+  m_Name: IceSpice
   m_EditorClassIdentifier: 
-  objectName: Cow
+  objectName: IceSpice
   minNegativeScore: -1
   maxNegativeScore: -10
   minPositiveScore: 50
   maxPositiveScore: 100
+  objectSprite: {fileID: 21300000, guid: f7b77ab8b72be124fa1d8dede0dca380, type: 3}

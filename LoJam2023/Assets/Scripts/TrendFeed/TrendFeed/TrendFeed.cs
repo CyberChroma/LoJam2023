@@ -19,10 +19,7 @@ public class TrendFeed : MonoBehaviour
     CollectableObjectList masterObjectListSO;
 
     [SerializeField]
-    GameObject shortPanelPrefab = null;
-
-    [SerializeField]
-    GameObject longPanelPrefab = null;
+    GameObject cardPrefab = null;
 
     [SerializeField]
     [Tooltip("The maximum number of trends that can be on-screen.")]
@@ -49,8 +46,7 @@ public class TrendFeed : MonoBehaviour
     int maxTrendCooldownLength = 10;
 
     //Object pools for the TrendCards
-    Queue<TrendCard> shortCardPool = new();
-    Queue<TrendCard> longCardPool = new();
+    Queue<TrendCard> cardPool = new();
 
     //Temporary queue of CollectableObjects to be added back as options for selection
     Queue<string> pendingReturns = new();
@@ -73,14 +69,7 @@ public class TrendFeed : MonoBehaviour
     //Controls the cooldown for placing new TrendCards.
     float trendCooldownTimer = 0;
 
-    //The amount of space left to place TrendCards.
-    float openFeedSpace = 0;
-
-    //The width of a "long" TrendCard.
-    int longCardWidth;
-
-    //The width of a "short" TrendCard
-    int shortCardWidth;
+    int cardWidth;
 
     [Header("Subscriber Interface for Trends")]
     public TrendEvent OnAddTrendEvent;
@@ -94,20 +83,15 @@ public class TrendFeed : MonoBehaviour
 
         maxTrendCooldownLength = Mathf.Max(minTrendCooldownLength + 1, maxTrendCooldownLength);
 
-        longCardWidth = Mathf.FloorToInt(panelRect.rect.width * 0.3f);
-        shortCardWidth = Mathf.FloorToInt(panelRect.rect.width * 0.2f);
-        openFeedSpace = Mathf.FloorToInt(panelRect.rect.width);
+        cardWidth = Mathf.FloorToInt(panelRect.rect.width / maxActiveTrends);
 
-        if (shortPanelPrefab == null)
+        if (cardPrefab == null)
             Debug.LogError("Missing ShortPanel Prefab object.");
-
-        if (longPanelPrefab == null)
-            Debug.LogError("Missing LongPanel Prefab object.");
 
         foreach (CollectableObjectInfo obj in masterObjectListSO.CollectableObjects)
         {
-            fullObjectDict.Add(obj.name, obj);
-            trendOptions.Add(obj.name);
+            fullObjectDict.Add(obj.ObjectName, obj);
+            trendOptions.Add(obj.ObjectName);
         }
     }
 
@@ -135,20 +119,12 @@ public class TrendFeed : MonoBehaviour
         {
             if (activeCards.Count < maxActiveTrends)
             {
-                if (openFeedSpace > shortCardWidth)
-                {
-                    AddTrendItem();
+                AddTrendItem();
 
-                    //Return any pending returns back into the set for selection
-                    while (pendingReturns.TryDequeue(out string trendOption))
-                    {
-                        trendOptions.Add(trendOption);
-                    }
-                }
-
-                else
+                //Return any pending returns back into the set for selection
+                while (pendingReturns.TryDequeue(out string trendOption))
                 {
-                   // Debug.LogFormat("No open space {0}.", openFeedSpace);
+                    trendOptions.Add(trendOption);
                 }
             }
 
@@ -197,34 +173,18 @@ public class TrendFeed : MonoBehaviour
         
         trendOptions.RemoveAt(randObjIndex);
 
-        //Fixed Creation Step for different card sizes.
-        if (objectLifetime <= maxShortTimerSeconds)
+        if (!cardPool.TryDequeue(out newTrendCard))
         {
-            if (!shortCardPool.TryDequeue(out newTrendCard))
-            {
-                newTrendCard = CreateTrendCard(shortPanelPrefab);
-                newTrendCard.SetCardWidth(shortCardWidth);
-                openFeedSpace -= shortCardWidth;
-            }
-        }
-
-        else
-        {
-            if (!longCardPool.TryDequeue(out newTrendCard))
-            {
-                newTrendCard = CreateTrendCard(longPanelPrefab);
-                newTrendCard.SetCardWidth(longCardWidth);
-                openFeedSpace -= longCardWidth;
-            }
+            newTrendCard = CreateTrendCard(cardPrefab);
+            newTrendCard.SetCardWidth(cardWidth);
         }
 
         //Ensure the object appears at the back of the HorizontalLayoutGroup
         newTrendCard.gameObject.transform.SetAsLastSibling();
         newTrendCard.gameObject.SetActive(true);
-        newTrendCard.Activate(newTrendObject.ObjectName, objectScore, objectLifetime, RemoveTrendItem);
+        newTrendCard.Activate(newTrendObject.ObjectName, objectScore, objectLifetime, newTrendObject.ObjectSprite, RemoveTrendItem);
         
         activeCards.Add(newTrendObject.ObjectName, newTrendCard);
-        openFeedSpace -= horizontalLayoutGroup.spacing;
 
         trendCooldownTimer = Random.Range(minTrendCooldownLength, maxTrendCooldownLength);
 
@@ -270,19 +230,7 @@ public class TrendFeed : MonoBehaviour
         activeCards.Remove(removeCard.ObjectName);
         removeCard.Deactivate();
 
-        if (removeCard.CompareTag("ShortCard"))
-        {
-            shortCardPool.Enqueue(removeCard);
-            openFeedSpace += shortCardWidth;
-        }
-
-        else
-        {
-            longCardPool.Enqueue(removeCard);
-            openFeedSpace += longCardWidth;
-        }
-
-        openFeedSpace += horizontalLayoutGroup.spacing;
+        cardPool.Enqueue(removeCard);
         pendingReturns.Enqueue(removeCard.ObjectName);
         OnRemoveTrendEvent.Invoke(removeCard.ObjectName);
     }
