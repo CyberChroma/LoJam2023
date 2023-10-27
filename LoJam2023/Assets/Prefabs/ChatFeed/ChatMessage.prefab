@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: <color="red">Stream:</color> this is a long message
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9851c5905391e3249a8f0d8c79469056, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ca3623e0a5c0b7e48a1765d3f7141b65, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

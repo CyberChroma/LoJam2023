@@ -68,8 +68,6 @@ public class LiveChatFeed : MonoBehaviour
 
     struct ChatMember {
         public string username;
-        public Color tagColor;
-        public string tagColorName;
     };
 
     void Awake()
@@ -169,12 +167,12 @@ public class LiveChatFeed : MonoBehaviour
     void GenerateChatMember()
     {
         chatMembers = new() {
-            new ChatMember() {username = "Alpha", tagColorName = "red" },
-            new ChatMember() {username = "Beta", tagColorName = "purple" },
-            new ChatMember() {username = "Charlie", tagColorName = "yellow" },
-            new ChatMember() {username = "Delta", tagColorName = "blue" },
-            new ChatMember() {username = "Echo", tagColorName = "green"},
-            new ChatMember() {username = "Foxtrot", tagColorName = "blue"}
+            new ChatMember() {username = "Alpha" },
+            new ChatMember() {username = "Beta"},
+            new ChatMember() {username = "Charlie" },
+            new ChatMember() {username = "Delta"},
+            new ChatMember() {username = "Echo"},
+            new ChatMember() {username = "Foxtrot"}
         };
     }
 
@@ -186,7 +184,6 @@ public class LiveChatFeed : MonoBehaviour
         //Generate the random ChatMember to deliver the message
         int chatMemberIdx = Random.Range(0, chatMembers.Count);
         string chatMemberName = chatMembers[chatMemberIdx].username;
-        string chatMemberColour = chatMembers[chatMemberIdx].tagColorName;
 
         string chatMessageText = Random.value < objectMessageChance && activeTrendingObjects.Count > 0 ?
             chatMessageTemplates.GetRandomObjectChatMessage(
@@ -206,9 +203,7 @@ public class LiveChatFeed : MonoBehaviour
         //Set the ChatMessage GameObject information
         newMessageObject.transform.SetAsLastSibling();
         newMessageObject.GetComponent<TextMeshProUGUI>().text = 
-            string.Format(
-                "<color={0}>{1}</color>: {2}", 
-                chatMemberColour, chatMemberName, chatMessageText);
+            string.Format("{0}: {1}", chatMemberName, chatMessageText);
 
         newMessageObject.GetComponent<TextMeshProUGUI>().enabled = true;
         newMessageObject.SetActive(true);
