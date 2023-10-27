@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61d31b8691a656e4db5881d6602c5c59, type: 3}
-  m_Name: CollectableList
+  m_Script: {fileID: 11500000, guid: eeec171beecf8ac4eafb1d5b787c9302, type: 3}
+  m_Name: TrendObjects
   m_EditorClassIdentifier: 
-  collectableObjects:
-  - {fileID: 11400000, guid: ec3713e750e7bda46884761ed1df17ba, type: 2}
+  trendObjects:
   - {fileID: 11400000, guid: 0d4ff716846137a45bfefb486de69791, type: 2}
   - {fileID: 11400000, guid: 1e4207d4eb6e9ff45938f05d9f44c436, type: 2}
+  - {fileID: 11400000, guid: ec3713e750e7bda46884761ed1df17ba, type: 2}

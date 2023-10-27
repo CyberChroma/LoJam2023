@@ -16,7 +16,7 @@ public class TrendFeed : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("ScriptableObject containing the full list of collectable objects.")]
-    CollectableObjectList masterObjectListSO;
+    TrendObjectList masterObjectListSO;
 
     [SerializeField]
     GameObject cardPrefab = null;
@@ -55,7 +55,7 @@ public class TrendFeed : MonoBehaviour
     List<string> trendOptions = new();
 
     //The full list of CollectableObjects pulled from the master list
-    readonly Dictionary<string, CollectableObjectInfo> fullObjectDict = new();
+    readonly Dictionary<string, TrendObjectInfo> fullObjectDict = new();
 
     //The set of TrendCards that are currently active
     readonly Dictionary<string, TrendCard> activeCards = new();
@@ -91,7 +91,7 @@ public class TrendFeed : MonoBehaviour
         if (cardPrefab == null)
             Debug.LogError("Missing ShortPanel Prefab object.");
 
-        foreach (CollectableObjectInfo obj in masterObjectListSO.CollectableObjects)
+        foreach (TrendObjectInfo obj in masterObjectListSO.TrendObjects)
         {
             fullObjectDict.Add(obj.ObjectName, obj);
             trendOptions.Add(obj.ObjectName);
@@ -153,7 +153,7 @@ public class TrendFeed : MonoBehaviour
     /// </summary>
     void AddTrendItem()
     {
-        CollectableObjectInfo newTrendObject;
+        TrendObjectInfo newTrendObject;
         TrendCard newTrendCard;
         
         int randObjIndex = Random.Range(0, trendOptions.Count);
@@ -274,6 +274,21 @@ public class TrendFeed : MonoBehaviour
         return activeCards.ContainsKey(objectName);
     }
 
+    /// <summary>
+    /// Set the new list of Trending Objects for the current level to pull from.
+    /// </summary>
+    /// <param name="newObjectList"></param>
+    public void SetTrendObjectList(TrendObjectList newObjectList)
+    {
+        masterObjectListSO = newObjectList;
+        fullObjectDict.Clear();
+
+        foreach (TrendObjectInfo obj in masterObjectListSO.TrendObjects)
+        {
+            fullObjectDict.Add(obj.ObjectName, obj);
+            trendOptions.Add(obj.ObjectName);
+        }
+    }
     /// <summary>
     /// Start the TrendFeed.
     /// </summary>

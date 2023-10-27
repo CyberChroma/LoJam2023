@@ -16,9 +16,6 @@ public class LiveChatFeed : MonoBehaviour
     LiveChatMessageList chatMessageTemplates;
 
     [SerializeField]
-    List<Color> chatTagColors;
-
-    [SerializeField]
     [Range(0, 1)]
     float objectMessageChance = 0.2f;
 
@@ -27,7 +24,6 @@ public class LiveChatFeed : MonoBehaviour
 
     //Holds the full set of ChatMembers that can appear
     List<ChatMember> chatMembers = new();
-
 
     //Holds the full set of created ChatMessage objects
     Queue<GameObject> chatMessageObjectQueue = new();
@@ -43,7 +39,7 @@ public class LiveChatFeed : MonoBehaviour
     //float chatPlayerAffinity = 0;
 
     //The maximum number of messages that can be displayed at once
-    int maxDisplayedMessages = 30;
+    int maxDisplayedMessages = 20;
 
     //The minimum text size of ChatMessages for readability
     readonly int minMessageTextSize = 10;
@@ -227,7 +223,6 @@ public class LiveChatFeed : MonoBehaviour
     /// <param name="objectName"></param>
     public void OnObjectStartTrending(string objectName)
     {
-        Debug.Log(objectName);
         activeTrendingObjects.Add(objectName);
     }
 
