@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Fade : MonoBehaviour {
+public class FadeOutFromActivate : MonoBehaviour {
     private bool fading;
     private Image image;
 
