@@ -238,8 +238,8 @@ MonoBehaviour:
     cat videos and food challenges. So smash that follow button one last time because
     this isn't a goodbye, it's a 'see you later, space cowboy!' "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9851c5905391e3249a8f0d8c79469056, type: 2}
-  m_sharedMaterial: {fileID: -732539208072999290, guid: 9851c5905391e3249a8f0d8c79469056, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d1d5f822ee5998547872987051f7f10d, type: 2}
+  m_sharedMaterial: {fileID: -732539208072999290, guid: d1d5f822ee5998547872987051f7f10d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1811,7 +1811,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: mediocre end
+  m_text: good end
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9851c5905391e3249a8f0d8c79469056, type: 2}
   m_sharedMaterial: {fileID: -732539208072999290, guid: 9851c5905391e3249a8f0d8c79469056, type: 2}

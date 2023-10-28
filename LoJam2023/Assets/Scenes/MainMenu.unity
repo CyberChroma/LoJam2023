@@ -1421,14 +1421,14 @@ RectTransform:
   m_GameObject: {fileID: 1355976950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_LocalScale: {x: 0.29, y: 0.29, z: 0.29}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 130902182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -186, y: -411}
+  m_AnchoredPosition: {x: -186, y: -387.1}
   m_SizeDelta: {x: 1100, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!328 &1355976952
@@ -1539,7 +1539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -186, y: -595}
+  m_AnchoredPosition: {x: 188.12286, y: -590.2}
   m_SizeDelta: {x: 136.2, y: 29.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360262088
@@ -1696,8 +1696,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189, y: -415}
-  m_SizeDelta: {x: 396.16, y: 478.8}
+  m_AnchoredPosition: {x: 189, y: -389.9}
+  m_SizeDelta: {x: 339.9, y: 478.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1407150578
 MonoBehaviour:
@@ -1729,15 +1729,15 @@ MonoBehaviour:
     But I gotta be quick, trends fizzle out faster than a flat soda. So hit that
     follow button, and let's make this interstellar show the talk of the galaxy!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9851c5905391e3249a8f0d8c79469056, type: 2}
-  m_sharedMaterial: {fileID: -732539208072999290, guid: 9851c5905391e3249a8f0d8c79469056, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d1d5f822ee5998547872987051f7f10d, type: 2}
+  m_sharedMaterial: {fileID: -732539208072999290, guid: d1d5f822ee5998547872987051f7f10d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280083776
-  m_fontColor: {r: 0.2509804, g: 0.8980393, b: 0.10980393, a: 1}
+    rgba: 4278228284
+  m_fontColor: {r: 0.23396216, g: 0.5849056, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1754,8 +1754,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.23
-  m_fontSizeBase: 13.23
+  m_fontSize: 11.24
+  m_fontSizeBase: 11.24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
