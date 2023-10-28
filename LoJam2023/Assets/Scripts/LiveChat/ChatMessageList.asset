@@ -19,6 +19,8 @@ MonoBehaviour:
   - cool!
   - let's goo
   - '*clap*'
+  - zorgon W
+  - WWW
   negativeMessages:
   - This stuff is trash!
   - What even is that?
@@ -27,6 +29,7 @@ MonoBehaviour:
   - booooring
   - cringe
   - ???
+  - embarrassing
   neutralMessages:
   - Hello LoJam!
   - What planet is this?
@@ -37,9 +40,12 @@ MonoBehaviour:
   - What is that?
   - Stp backseatign
   - earth is so tiny!
-  - I've vacationed here!!
+  - I've been here!!
   - i'm confuse
   - helloooo
+  - earth overrated
+  - any1 from zoga 9??
+  - raid incoming
   objectMessages:
   - Get the {0}!
   - Is that {0}
