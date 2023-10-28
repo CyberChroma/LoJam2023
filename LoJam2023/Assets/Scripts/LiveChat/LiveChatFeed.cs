@@ -34,15 +34,11 @@ public class LiveChatFeed : MonoBehaviour
     //Holds the set of ChatMembers on hold from chatting
     Queue<string> pendingChatMemberReturns = new();
 
-    //Represents how well chat enjoys the Player's stream
-    //Held between [-1, 1] and influences the nature of the messages / emotes
-    //float chatPlayerAffinity = 0;
-
     //The maximum number of messages that can be displayed at once
-    int maxDisplayedMessages = 15;
+    int maxDisplayedMessages = 12;
 
     //The minimum text size of ChatMessages for readability
-    readonly int minMessageTextSize = 20;
+    readonly int minMessageTextSize = 12;
 
     //The current interval between chat messages spawning
     [SerializeField]
@@ -60,6 +56,7 @@ public class LiveChatFeed : MonoBehaviour
     //Has the ChatFeed been stopped?
     bool stopRequested = false;
 
+    //Represents how well chat enjoys the Player's stream
     float chatAffinityScore = 0;
 
     void Awake()
