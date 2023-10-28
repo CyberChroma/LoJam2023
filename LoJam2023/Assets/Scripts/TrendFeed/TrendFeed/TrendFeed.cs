@@ -27,16 +27,16 @@ public class TrendFeed : MonoBehaviour
 
     [SerializeField]
     [Min(5f)]
-    int minShortTimerSeconds = 15;
+    int minShortTimerSeconds = 10;
 
     [SerializeField]
-    int maxShortTimerSeconds = 30;
+    int maxShortTimerSeconds = 15;
 
     [SerializeField]
-    int minLongTimerSeconds = 45;
+    int minLongTimerSeconds = 20;
 
     [SerializeField]
-    int maxLongTimerSeconds = 90;
+    int maxLongTimerSeconds = 30;
 
     [SerializeField]
     [Min(0f)]
@@ -45,6 +45,10 @@ public class TrendFeed : MonoBehaviour
     [SerializeField]
     int maxTrendCooldownLength = 10;
 
+    [SerializeField]
+    [Range(0f, 1f)]
+    float negativeTrendChance = 0.15f;
+    
     //Object pools for the TrendCards
     Queue<TrendCard> cardPool = new();
 
@@ -73,7 +77,6 @@ public class TrendFeed : MonoBehaviour
 
     [Header("Subscriber Interface for Trends")]
     public TrendEvent OnAddTrendEvent;
-
     public TrendEvent OnRemoveTrendEvent;
 
     private void Awake()
@@ -85,8 +88,6 @@ public class TrendFeed : MonoBehaviour
 
         int totalPadding = horizontalLayoutGroup.padding.right * maxActiveTrends;
         cardWidth = Mathf.FloorToInt((panelRect.rect.width - totalPadding) / maxActiveTrends);
-        Debug.Log(panelRect.rect.width);
-        Debug.Log(cardWidth);
 
         if (cardPrefab == null)
             Debug.LogError("Missing ShortPanel Prefab object.");
@@ -154,7 +155,6 @@ public class TrendFeed : MonoBehaviour
     void AddTrendItem()
     {
         TrendObjectInfo newTrendObject;
-        TrendCard newTrendCard;
         
         int randObjIndex = Random.Range(0, trendOptions.Count);
         int objectLifetime = 0;
@@ -172,11 +172,17 @@ public class TrendFeed : MonoBehaviour
         }
 
         newTrendObject = fullObjectDict[trendOptions[randObjIndex]];
-        int objectScore = Random.Range(newTrendObject.MinPositiveScore, newTrendObject.MaxPositiveScore+1);
+
+        int objectScore;
+
+        if (Random.value < negativeTrendChance)
+            objectScore = Random.Range(newTrendObject.MinNegativeScore, newTrendObject.MaxNegativeScore + 1);
+        else
+            objectScore = Random.Range(newTrendObject.MinPositiveScore, newTrendObject.MaxPositiveScore + 1);
         
         trendOptions.RemoveAt(randObjIndex);
 
-        if (!cardPool.TryDequeue(out newTrendCard))
+        if (!cardPool.TryDequeue(out TrendCard newTrendCard))
         {
             newTrendCard = CreateTrendCard(cardPrefab);
             newTrendCard.SetCardWidth(cardWidth);

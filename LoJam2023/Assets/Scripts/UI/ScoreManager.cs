@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
+
+[System.Serializable]
+public class ScoreEvent : UnityEvent<int> { }
 
 public class ScoreManager : MonoBehaviour {
     public float currentScore = 0;
@@ -14,16 +18,23 @@ public class ScoreManager : MonoBehaviour {
     private TextMeshProUGUI scoreText;
     private LevelSwitcher levelSwitcher;
 
+    [SerializeField]
+    private ScoreEvent scoreUpdateEvent;
+
     // Start is called before the first frame update
     void Start() {
         scoreText = GetComponent<TextMeshProUGUI>();
         levelSwitcher = FindObjectOfType<LevelSwitcher>();
         scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
         scoreOutOfText.text = "/" + levelThresholds[currentLevel-1];
+
+        if (scoreUpdateEvent == null)
+            scoreUpdateEvent = new();
     }
 
     public void AddScore(float scoreToAdd) {
         currentScore += scoreToAdd;
+        scoreUpdateEvent.Invoke((int)scoreToAdd);
 
         // Check for level threshold crossing
         if (currentLevel <= levelThresholds.Length && currentScore >= levelThresholds[currentLevel - 1]) {
@@ -37,14 +48,31 @@ public class ScoreManager : MonoBehaviour {
     }
 
     IEnumerator UpdateScoreVisual() {
-        while (displayedScore < currentScore) {
-            // Increment the displayed score
-            displayedScore = Mathf.Min(displayedScore + (countSpeed * Time.deltaTime), currentScore);
 
-            // Update the text, converting the float to an int for display
-            scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
+        if (currentScore > displayedScore)
+        {
+            while (displayedScore < currentScore) {
+                // Increment the displayed score
+                displayedScore = Mathf.Min(displayedScore + (countSpeed * Time.deltaTime), currentScore);
 
-            yield return null;
+                // Update the text, converting the float to an int for display
+                scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
+
+                yield return null;
+            }
+        }
+        else
+        {
+            while (displayedScore > currentScore)
+            {
+                // Increment the displayed score
+                displayedScore = Mathf.Max(displayedScore - (countSpeed * Time.deltaTime), currentScore);
+
+                // Update the text, converting the float to an int for display
+                scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
+
+                yield return null;
+            }
         }
     }
 }

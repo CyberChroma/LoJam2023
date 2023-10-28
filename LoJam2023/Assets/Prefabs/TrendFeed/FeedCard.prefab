@@ -95,6 +95,9 @@ MonoBehaviour:
   timerTextObj: {fileID: 7563686006194238450}
   nameTextObj: {fileID: 3745666316307650667}
   scoreTextObj: {fileID: 5431319633910346039}
+  nameBackgroundObj: {fileID: 3787135533426203404}
+  positiveTrendColor: {r: 0.24705882, g: 1, b: 0.11372549, a: 1}
+  negativeTrendColor: {r: 1, g: 0.11372548, b: 0.11372548, a: 1}
   iconObj: {fileID: 5643109337147279994}
 --- !u!1 &2093429967022086746
 GameObject:

@@ -22,10 +22,6 @@ public class LiveChatMessageList : ScriptableObject
     [SerializeField]
     List<string> objectMessages;
 
-    private void OnValidate()
-    {
-    }
-
     private void OnEnable()
     {
         if (positiveMessages == null)

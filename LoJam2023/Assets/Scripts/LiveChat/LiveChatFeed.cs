@@ -23,7 +23,7 @@ public class LiveChatFeed : MonoBehaviour
     List<string> activeTrendingObjects = new();
 
     //Holds the full set of ChatMembers that can appear
-    List<ChatMember> chatMembers = new();
+    List<string> chatMembers = new();
 
     //Holds the full set of created ChatMessage objects
     Queue<GameObject> chatMessageObjectQueue = new();
@@ -32,7 +32,7 @@ public class LiveChatFeed : MonoBehaviour
     Queue<GameObject> activeChatMessages = new();
 
     //Holds the set of ChatMembers on hold from chatting
-    Queue<ChatMember> pendingChatMemberReturns = new();
+    Queue<string> pendingChatMemberReturns = new();
 
     //Represents how well chat enjoys the Player's stream
     //Held between [-1, 1] and influences the nature of the messages / emotes
@@ -45,6 +45,7 @@ public class LiveChatFeed : MonoBehaviour
     readonly int minMessageTextSize = 10;
 
     //The current interval between chat messages spawning
+    [SerializeField]
     [Range(0.25f, 2)]
     float currentMessageCooldown = 0.5f;
 
@@ -59,12 +60,7 @@ public class LiveChatFeed : MonoBehaviour
     //Has the ChatFeed been stopped?
     bool stopRequested = false;
 
-    //DEBUG
-    int numMessagesGenerated = 0;
-
-    struct ChatMember {
-        public string username;
-    };
+    float chatAffinityScore = 0;
 
     void Awake()
     {
@@ -96,7 +92,7 @@ public class LiveChatFeed : MonoBehaviour
         panelVLG.padding.top = Mathf.FloorToInt(panelHeight % maxDisplayedMessages);
 
         Debug.LogFormat("{0} - Max: {1} Height: {2} Padding: {3}", panelHeight, maxDisplayedMessages, messageRectHeight, panelVLG.padding.top);
-        GenerateChatMember();
+        GenerateChatMembers();
     }
 
     private void Update()
@@ -137,7 +133,6 @@ public class LiveChatFeed : MonoBehaviour
         }
 
         messageCooldownTimer = 2f;
-        numMessagesGenerated = 0;
         pendingChatMemberReturns.Clear();
     }
 
@@ -160,15 +155,24 @@ public class LiveChatFeed : MonoBehaviour
     /// <summary>
     /// Generate a series of ChatMembers to consistently appear in the LiveChat feed.
     /// </summary>
-    void GenerateChatMember()
+    void GenerateChatMembers()
     {
         chatMembers = new() {
-            new ChatMember() {username = "Alpha" },
-            new ChatMember() {username = "Beta"},
-            new ChatMember() {username = "Charlie" },
-            new ChatMember() {username = "Delta"},
-            new ChatMember() {username = "Echo"},
-            new ChatMember() {username = "Foxtrot"}
+            "Ajnin",
+            "DTheCJ0hns0n",
+            "SoftieFan4Ever",
+            "LumbagoTTV",
+            "CyberChroma",
+            "Hman5",
+            "AnlbrewMat3",
+            "Meowkaplier",
+            "NotAnAlien_",
+            "GnortsMrAlien",
+            "helordada",
+            "_wsm_",
+            "gAlaxyK1ng",
+            "prism0",
+            "bob"
         };
     }
 
@@ -179,12 +183,20 @@ public class LiveChatFeed : MonoBehaviour
     {
         //Generate the random ChatMember to deliver the message
         int chatMemberIdx = Random.Range(0, chatMembers.Count);
-        string chatMemberName = chatMembers[chatMemberIdx].username;
+        string chatMemberName = chatMembers[chatMemberIdx];
+
+        int messageSentiment;
+
+        if (chatAffinityScore > 0)
+            messageSentiment = Random.value > Mathf.Min(chatAffinityScore, 0.5f) ? 0 : 1;
+
+        else
+            messageSentiment = -Random.value < Mathf.Max(chatAffinityScore, -0.5f) ? 0 : -1;
 
         string chatMessageText = Random.value < objectMessageChance && activeTrendingObjects.Count > 0 ?
             chatMessageTemplates.GetRandomObjectChatMessage(
                 activeTrendingObjects[Random.Range(0, activeTrendingObjects.Count)]) :
-            chatMessageTemplates.GetRandomChatMessage(0);
+            chatMessageTemplates.GetRandomChatMessage(messageSentiment);
 
         //Get the ChatMessage GameObject to display the message
         if (!chatMessageObjectQueue.TryDequeue(out GameObject newMessageObject))
@@ -233,6 +245,18 @@ public class LiveChatFeed : MonoBehaviour
     public void OnObjectStopTrending(string objectName)
     {
         activeTrendingObjects.Remove(objectName);
+    }
+
+    /// <summary>
+    /// Update the Chat Affinity Score according to score performance.
+    /// </summary>
+    /// <param name="scoreAdded"></param>
+    public void OnUpdatePlayerScore(int scoreAdded)
+    {
+        if (scoreAdded > 0)
+            chatAffinityScore = Mathf.Min(chatAffinityScore + 0.1f, 1);
+        else
+            chatAffinityScore = Mathf.Max(chatAffinityScore - 0.1f, -1);
     }
 
     /// <summary>

@@ -13,15 +13,33 @@ MonoBehaviour:
   m_Name: ChatMessageList
   m_EditorClassIdentifier: 
   positiveMessages:
-  - 
-  negativeMessages: []
+  - WOW
+  - Omg did they just..
+  - Zoo Wee Mama
+  - cool!
+  - let's goo
+  - '*clap*'
+  negativeMessages:
+  - This stuff is trash!
+  - What even is that?
+  - .-.
+  - Next planet pls
+  - booooring
+  - cringe
+  - ???
   neutralMessages:
   - Hello LoJam!
   - What planet is this?
   - Is that a human?
   - Hi streamerr
   - What
-  - Next game
+  - hallo
+  - What is that?
+  - Stp backseatign
+  - earth is so tiny!
+  - I've vacationed here!!
+  - i'm confuse
+  - helloooo
   objectMessages:
   - Get the {0}!
   - Is that {0}

@@ -20,6 +20,15 @@ public class TrendCard: MonoBehaviour
     GameObject scoreTextObj;
 
     [SerializeField]
+    Image nameBackgroundObj;
+
+    [SerializeField]
+    Color positiveTrendColor;
+
+    [SerializeField]
+    Color negativeTrendColor;
+
+    [SerializeField]
     Image iconObj;
     
     RectTransform cardRect;
@@ -81,6 +90,12 @@ public class TrendCard: MonoBehaviour
 
         if (nameText)
             nameText.text = objectName;
+
+        if (this.objectScore > 0)
+            nameBackgroundObj.color = positiveTrendColor;
+        else
+            nameBackgroundObj.color = negativeTrendColor;
+
     }
 
     /// <summary>
