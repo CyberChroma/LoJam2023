@@ -48,7 +48,7 @@ public class RandomObjectSpawner : MonoBehaviour
         }
 
         do {
-            newTrendObject.transform.position = new Vector2(Random.Range(-50f, 50f), 10f);
+            newTrendObject.transform.position = new Vector2(Random.Range(-101f, 101f), 10f);
             SnapObjectToFloor(newTrendObject);
         } while (IsPositionInView(newTrendObject.transform.position));
     }
