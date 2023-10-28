@@ -40,6 +40,8 @@ public class CountdownTimer : MonoBehaviour {
                 }
             } else if (currentTime <= 60f) {
                 timerText.color = Color.red;
+            } else {
+                timerText.color = Color.white;
             }
             yield return new WaitForSeconds(1f);
             currentTime--;
