@@ -15,6 +15,6 @@ MonoBehaviour:
   objectName: Tombstone
   minNegativeScore: -10
   maxNegativeScore: -500
-  minPositiveScore: 200
+  minPositiveScore: 10
   maxPositiveScore: 1000
   objectSprite: {fileID: 21300000, guid: 0b1ddb81dc9c65045b40be7466800108, type: 3}

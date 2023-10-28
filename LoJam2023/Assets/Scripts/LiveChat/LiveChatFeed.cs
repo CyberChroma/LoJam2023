@@ -35,7 +35,7 @@ public class LiveChatFeed : MonoBehaviour
     Queue<string> pendingChatMemberReturns = new();
 
     //The maximum number of messages that can be displayed at once
-    int maxDisplayedMessages = 12;
+    int maxDisplayedMessages = 11;
 
     //The minimum text size of ChatMessages for readability
     readonly int minMessageTextSize = 12;

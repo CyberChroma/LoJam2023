@@ -15,6 +15,6 @@ MonoBehaviour:
   objectName: Jack O'Lantern
   minNegativeScore: -10
   maxNegativeScore: -500
-  minPositiveScore: 200
+  minPositiveScore: 10
   maxPositiveScore: 1000
   objectSprite: {fileID: 21300000, guid: 88152beadc392be46aa789f42eda326c, type: 3}

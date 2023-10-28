@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class CountdownTimer : MonoBehaviour {
     public int averageEndThreshold = 100000;
     public int goodEndThreshold = 1000000;
+    public Color normalColor = Color.white;
+    public Color warningColor = Color.red;
+    public Color warningColor2 = Color.yellow;
 
     [HideInInspector] public float currentTime;
 
@@ -34,14 +37,14 @@ public class CountdownTimer : MonoBehaviour {
             timerText.text = $"{minutes:D2}:{seconds:D2}";
             if (currentTime <= 30f) {
                 if (currentTime % 2 == 0) {
-                    timerText.color = Color.red;
+                    timerText.color = warningColor;
                 } else {
-                    timerText.color = Color.yellow;
+                    timerText.color = warningColor2;
                 }
             } else if (currentTime <= 60f) {
-                timerText.color = Color.red;
+                timerText.color = warningColor;
             } else {
-                timerText.color = Color.white;
+                timerText.color = normalColor;
             }
             yield return new WaitForSeconds(1f);
             currentTime--;
