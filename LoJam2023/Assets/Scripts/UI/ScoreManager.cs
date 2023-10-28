@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour {
     private int currentLevel = 1;
     private TextMeshProUGUI scoreText;
     private LevelSwitcher levelSwitcher;
+    private float realCountSpeed;
 
     [SerializeField]
     private ScoreEvent scoreUpdateEvent;
@@ -37,7 +38,7 @@ public class ScoreManager : MonoBehaviour {
         scoreUpdateEvent.Invoke((int)scoreToAdd);
 
         // Check for level threshold crossing
-        if (currentLevel <= levelThresholds.Length && currentScore >= levelThresholds[currentLevel - 1]) {
+        if (currentLevel != 3 && currentLevel <= levelThresholds.Length && currentScore >= levelThresholds[currentLevel - 1]) {
             levelSwitcher.SwitchToLevel(currentLevel + 1);
             scoreOutOfText.text = "/" + levelThresholds[currentLevel];
             currentLevel++;
@@ -51,9 +52,10 @@ public class ScoreManager : MonoBehaviour {
 
         if (currentScore > displayedScore)
         {
+            realCountSpeed = countSpeed * currentScore.ToString().Length;
             while (displayedScore < currentScore) {
                 // Increment the displayed score
-                displayedScore = Mathf.Min(displayedScore + (countSpeed * Time.deltaTime), currentScore);
+                displayedScore = Mathf.Min(displayedScore + (realCountSpeed * Time.deltaTime), currentScore);
 
                 // Update the text, converting the float to an int for display
                 scoreText.text = Mathf.FloorToInt(displayedScore).ToString();
@@ -63,6 +65,7 @@ public class ScoreManager : MonoBehaviour {
         }
         else
         {
+            realCountSpeed = countSpeed * displayedScore.ToString().Length;
             while (displayedScore > currentScore)
             {
                 // Increment the displayed score
@@ -74,5 +77,19 @@ public class ScoreManager : MonoBehaviour {
                 yield return null;
             }
         }
+    }
+
+    public static List<int> GetDigits(int number) {
+        List<int> digits = new List<int>();
+        string numberString = number.ToString();
+
+        foreach (char digitChar in numberString) {
+            if (char.IsDigit(digitChar)) {
+                int digit = int.Parse(digitChar.ToString());
+                digits.Add(digit);
+            }
+        }
+
+        return digits;
     }
 }

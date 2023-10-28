@@ -7,9 +7,11 @@ public class CountdownTimer : MonoBehaviour {
     public int averageEndThreshold = 100000;
     public int goodEndThreshold = 1000000;
 
+    [HideInInspector] public float currentTime;
+
     private TextMeshProUGUI timerText;
     private ScoreManager scoreManager;
-    private float totalTimeInSeconds = 300f;
+    private float totalTimeInSeconds = 180f;
 
     void Start() {
         timerText = GetComponent<TextMeshProUGUI>();
@@ -24,12 +26,21 @@ public class CountdownTimer : MonoBehaviour {
     }
 
     private IEnumerator StartCountdown() {
-        float currentTime = totalTimeInSeconds;
+        currentTime = totalTimeInSeconds;
 
         while (currentTime >= 0) {
             int minutes = Mathf.FloorToInt(currentTime / 60);
             int seconds = Mathf.FloorToInt(currentTime % 60);
             timerText.text = $"{minutes:D2}:{seconds:D2}";
+            if (currentTime <= 30f) {
+                if (currentTime % 2 == 0) {
+                    timerText.color = Color.red;
+                } else {
+                    timerText.color = Color.yellow;
+                }
+            } else if (currentTime <= 60f) {
+                timerText.color = Color.red;
+            }
             yield return new WaitForSeconds(1f);
             currentTime--;
         }

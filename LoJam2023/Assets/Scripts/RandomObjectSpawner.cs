@@ -6,18 +6,17 @@ public class RandomObjectSpawner : MonoBehaviour
 {
     public float minSpawnTime = 1;
     public float maxSpawnTime = 5;
-    public GameObject[] trendObjects;
+    public GameObject[] trendObjectsArea1;
+    public GameObject[] trendObjectsArea2;
+    public GameObject[] trendObjectsArea3;
+
+    private LevelSwitcher levelSwitcher;
 
     // Start is called before the first frame update
     void Start()
     {
+        levelSwitcher = FindObjectOfType<LevelSwitcher>();
         StartCoroutine(WaitToSpawn());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator WaitToSpawn() {
@@ -28,14 +27,30 @@ public class RandomObjectSpawner : MonoBehaviour
     }
 
     void SpawnNewTrendObject() {
-        int trendObjectChoice = Random.Range(0, trendObjects.Length);
-        GameObject newTrendObject = Instantiate(trendObjects[trendObjectChoice], transform);
-        newTrendObject.name = trendObjects[trendObjectChoice].name;
+        int trendObjectChoice;
+        GameObject newTrendObject = null;
+        switch (levelSwitcher.currentLevel) {
+            case 0:
+                trendObjectChoice = Random.Range(0, trendObjectsArea1.Length);
+                newTrendObject = Instantiate(trendObjectsArea1[trendObjectChoice], transform);
+                newTrendObject.name = trendObjectsArea1[trendObjectChoice].name;
+                break;
+            case 1:
+                trendObjectChoice = Random.Range(0, trendObjectsArea2.Length);
+                newTrendObject = Instantiate(trendObjectsArea2[trendObjectChoice], transform);
+                newTrendObject.name = trendObjectsArea2[trendObjectChoice].name;
+                break;
+            case 2:
+                trendObjectChoice = Random.Range(0, trendObjectsArea3.Length);
+                newTrendObject = Instantiate(trendObjectsArea3[trendObjectChoice], transform);
+                newTrendObject.name = trendObjectsArea3[trendObjectChoice].name;
+                break;
+        }
+
         do {
             newTrendObject.transform.position = new Vector2(Random.Range(-50f, 50f), 10f);
             SnapObjectToFloor(newTrendObject);
         } while (IsPositionInView(newTrendObject.transform.position));
-
     }
 
     bool IsPositionInView(Vector2 worldPosition) {

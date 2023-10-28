@@ -6,31 +6,28 @@ public class LevelSwitcher : MonoBehaviour
 {
     public GameObject[] levels;
     public Transform cameraOffset;
+    [HideInInspector] public int currentLevel;
 
+    private CountdownTimer countdownTimer;
     private RandomObjectSpawner randomObjectSpawner;
     private PlayerMove playerMove;
     private PlayerSwing playerSwing;
     private CameraFollow cameraFollow;
+    private TrendFeed trendFeed;
 
     // Start is called before the first frame update
     void Start()
     {
+        countdownTimer = FindObjectOfType<CountdownTimer>();
         randomObjectSpawner = FindObjectOfType<RandomObjectSpawner>();
         playerMove = FindObjectOfType<PlayerMove>();
         playerSwing = FindObjectOfType<PlayerSwing>();
         cameraFollow = FindObjectOfType<CameraFollow>();
+        trendFeed = FindObjectOfType<TrendFeed>();
         for (int i = 0; i < levels.Length; ++i) {
             levels[i].SetActive(false);
         }
         levels[0].SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L)) {
-            SwitchToLevel(2); // Temp testing
-        }
     }
 
     public void SwitchToLevel(int nextLevel) {
@@ -46,8 +43,11 @@ public class LevelSwitcher : MonoBehaviour
         for (int i = 0; i < levels.Length; ++i) {
             levels[i].SetActive(i == nextLevelIndex);
         }
-
+        countdownTimer.currentTime += 60;
         randomObjectSpawner.ClearObjects();
+        currentLevel = nextLevelIndex;
+        trendFeed.SetTrendObjectList(nextLevelIndex);
+        trendFeed.ClearAllTrendItems();
         StartCoroutine(ResetPlayer());
     }
 

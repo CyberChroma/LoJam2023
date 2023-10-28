@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SmallObjects
   m_EditorClassIdentifier: 
   trendObjects:
-  - {fileID: 11400000, guid: 6b3606a896dbef745af0c92a0175c5e8, type: 2}
   - {fileID: 11400000, guid: 70e7a430fa62f2f4eb3afa61570aa93c, type: 2}
-  - {fileID: 11400000, guid: 1e4207d4eb6e9ff45938f05d9f44c436, type: 2}
   - {fileID: 11400000, guid: 9ffcc08413aa8db4db53759b422cec82, type: 2}
+  - {fileID: 11400000, guid: 1e4207d4eb6e9ff45938f05d9f44c436, type: 2}
+  - {fileID: 11400000, guid: 6b3606a896dbef745af0c92a0175c5e8, type: 2}
+  - {fileID: 11400000, guid: a8248e01771b413458df19d7374054b5, type: 2}

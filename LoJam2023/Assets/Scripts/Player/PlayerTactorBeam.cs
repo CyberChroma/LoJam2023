@@ -35,12 +35,6 @@ public class PlayerTactorBeam : MonoBehaviour
         StopAllCoroutines();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision) {
         if (gameObject.activeSelf && activePullObject == null && collision.CompareTag("TrendObject")) {
             activePullObject = collision.gameObject;

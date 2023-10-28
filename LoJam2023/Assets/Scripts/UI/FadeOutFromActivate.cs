@@ -23,8 +23,12 @@ public class FadeOutFromActivate : MonoBehaviour {
         StartCoroutine(WaitToFade());
     }
 
+    public void StartFadeFast() {
+        fading = true;
+    }
+
     IEnumerator WaitToFade() {
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(44f);
         fading = true;
     }
 }

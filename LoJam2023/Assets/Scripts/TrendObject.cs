@@ -16,6 +16,7 @@ public class TrendObject : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerTactorBeam = FindObjectOfType<PlayerTactorBeam>(true);
         playerMove = playerTactorBeam.GetComponentInParent<PlayerMove>();
+        Destroy(gameObject, 100f);
     }
 
     // Update is called once per frame

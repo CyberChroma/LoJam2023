@@ -14,9 +14,21 @@ public class TrendEvent : UnityEvent<string>
 /// </summary>
 public class TrendFeed : MonoBehaviour
 {
+    [HideInInspector]
+    [Tooltip("ScriptableObject containing the full list of collectable objects.")]
+    public TrendObjectList masterObjectListSO;
+
     [SerializeField]
     [Tooltip("ScriptableObject containing the full list of collectable objects.")]
-    TrendObjectList masterObjectListSO;
+    TrendObjectList objectListSmall;
+
+    [SerializeField]
+    [Tooltip("ScriptableObject containing the full list of collectable objects.")]
+    TrendObjectList objectListMedium;
+
+    [SerializeField]
+    [Tooltip("ScriptableObject containing the full list of collectable objects.")]
+    TrendObjectList objectListLarge;
 
     [SerializeField]
     GameObject cardPrefab = null;
@@ -81,6 +93,7 @@ public class TrendFeed : MonoBehaviour
 
     private void Awake()
     {
+        masterObjectListSO = objectListSmall;
         panelRect = GetComponent<RectTransform>();
         horizontalLayoutGroup = GetComponent<HorizontalLayoutGroup>();
 
@@ -203,11 +216,11 @@ public class TrendFeed : MonoBehaviour
     /// <summary>
     /// Clear the current list of trending items. To be called when completing a level.
     /// </summary>
-    void ClearAllTrendItems()
+    public void ClearAllTrendItems()
     {
         foreach (KeyValuePair<string, TrendCard> trendPair in activeCards)
         {
-            RemoveTrendItem(trendPair.Value);
+            ClearTrendItem(trendPair.Value);
         }
 
         activeCards.Clear();
@@ -237,6 +250,19 @@ public class TrendFeed : MonoBehaviour
     void RemoveTrendItem(TrendCard removeCard)
     {
         activeCards.Remove(removeCard.ObjectName);
+        removeCard.Deactivate();
+
+        cardPool.Enqueue(removeCard);
+        pendingReturns.Enqueue(removeCard.ObjectName);
+        OnRemoveTrendEvent.Invoke(removeCard.ObjectName);
+    }
+
+    /// <summary>
+    /// Remove an Active TrendCard from the TrendFeed, hiding it and enabling it to be selected again.
+    /// </summary>
+    /// <param name="removeCard"></param>
+    /// <param name="length"></param>
+    void ClearTrendItem(TrendCard removeCard) {
         removeCard.Deactivate();
 
         cardPool.Enqueue(removeCard);
@@ -284,10 +310,21 @@ public class TrendFeed : MonoBehaviour
     /// Set the new list of Trending Objects for the current level to pull from.
     /// </summary>
     /// <param name="newObjectList"></param>
-    public void SetTrendObjectList(TrendObjectList newObjectList)
+    public void SetTrendObjectList(int newLevel)
     {
-        masterObjectListSO = newObjectList;
+        switch (newLevel) {
+            case 0:
+                masterObjectListSO = objectListSmall;
+                break;
+            case 1:
+                masterObjectListSO = objectListMedium;
+                break;
+            case 2:
+                masterObjectListSO = objectListLarge;
+                break;
+        }
         fullObjectDict.Clear();
+        trendOptions.Clear();
 
         foreach (TrendObjectInfo obj in masterObjectListSO.TrendObjects)
         {

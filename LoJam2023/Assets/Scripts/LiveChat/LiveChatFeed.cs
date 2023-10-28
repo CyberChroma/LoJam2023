@@ -39,10 +39,10 @@ public class LiveChatFeed : MonoBehaviour
     //float chatPlayerAffinity = 0;
 
     //The maximum number of messages that can be displayed at once
-    int maxDisplayedMessages = 20;
+    int maxDisplayedMessages = 15;
 
     //The minimum text size of ChatMessages for readability
-    readonly int minMessageTextSize = 10;
+    readonly int minMessageTextSize = 20;
 
     //The current interval between chat messages spawning
     [SerializeField]
@@ -80,8 +80,6 @@ public class LiveChatFeed : MonoBehaviour
             Debug.LogError("LiveChatFeed is missing 'ChatMessage' prefab reference.");
         }
 
-        
-
         //Determine the maximum number of messages to display
         maxDisplayedMessages = 
             Mathf.Min(maxDisplayedMessages, Mathf.FloorToInt(panelHeight / minMessageHeight));
@@ -103,7 +101,7 @@ public class LiveChatFeed : MonoBehaviour
         if (messageCooldownTimer <= 0)
         {
             GenerateChatMessage();
-            messageCooldownTimer = currentMessageCooldown;
+            messageCooldownTimer = Random.Range(currentMessageCooldown - 0.2f, currentMessageCooldown + 0.2f);
 
             while (pendingChatMemberReturns.TryDequeue(out var member))
             {
@@ -214,6 +212,7 @@ public class LiveChatFeed : MonoBehaviour
             string.Format("{0}: {1}", chatMemberName, chatMessageText);
 
         newMessageObject.GetComponent<TextMeshProUGUI>().enabled = true;
+        newMessageObject.GetComponent<TextMeshProUGUI>().color = Random.ColorHSV(70f/255f, 120f/255f, 0, 1, 0, 1);
         newMessageObject.SetActive(true);
 
         activeChatMessages.Enqueue(newMessageObject);
