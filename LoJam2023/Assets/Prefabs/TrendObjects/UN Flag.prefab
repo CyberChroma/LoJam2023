@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5723112576442960517}
   - component: {fileID: 4998864079201293316}
-  - component: {fileID: 9030047932722932855}
   - component: {fileID: 5294073906852255958}
+  - component: {fileID: 3726704836552654936}
   m_Layer: 0
-  m_Name: IceSpice
+  m_Name: UN Flag
   m_TagString: TrendObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.264, z: -0.04479003}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2589273773967340573}
@@ -62,7 +62,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &9030047932722932855
+--- !u!114 &5294073906852255958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718218751919762528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176102ef89a269047bfe4696384fc3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisappearing: 0
+--- !u!61 &3726704836552654936
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +107,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021362752, y: -0.05874753}
+  m_Offset: {x: 0.02993536, y: 0.037279844}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -105,22 +118,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1174948, y: 1.3204408}
+  m_Size: {x: 1.2454367, y: 0.88955355}
   m_EdgeRadius: 0
---- !u!114 &5294073906852255958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6718218751919762528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 176102ef89a269047bfe4696384fc3e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: 100
-  isDisappearing: 0
 --- !u!1 &7065980550133923666
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 7065980550133923666}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.161, y: 0.17, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -194,7 +193,7 @@ SpriteRenderer:
   m_SortingLayerID: 383699673
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f7b77ab8b72be124fa1d8dede0dca380, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42fc7f141bfe2de4eab34318c62f2d51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

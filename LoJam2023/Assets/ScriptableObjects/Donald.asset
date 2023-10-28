@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d97f3cd8d60cca94192e0f74dc1736e8, type: 3}
-  m_Name: Whale
+  m_Name: Donald
   m_EditorClassIdentifier: 
-  objectName: Whale
-  minNegativeScore: -3
-  maxNegativeScore: -4
-  minPositiveScore: 100
-  maxPositiveScore: 200
-  objectSprite: {fileID: 21300000, guid: 85480d9afb7b36e4fa6cd8b41e5591d0, type: 3}
+  objectName: Donald
+  minNegativeScore: -1
+  maxNegativeScore: -50
+  minPositiveScore: 80
+  maxPositiveScore: 100
+  objectSprite: {fileID: 21300000, guid: 85e9b6b165e9ddf4ca73ec48999f18b1, type: 3}

@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level.unity
     guid: 622c46c8ae491d541852113351a9bd46
+  - enabled: 1
+    path: Assets/Scenes/GameOverGood.unity
+    guid: d73f75ee2febc7646bb251bb1cd4a86a
+  - enabled: 1
+    path: Assets/Scenes/GameOverAverage.unity
+    guid: 4184672e831f7c84b8d001c0232fcb88
+  - enabled: 1
+    path: Assets/Scenes/GameOverBad.unity
+    guid: 8a68971fa50f33d4d8e27a1e47b452e2
   m_configObjects: {}

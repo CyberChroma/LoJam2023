@@ -4,11 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CountdownTimer : MonoBehaviour {
-    [SerializeField] private TextMeshProUGUI timerText;
+    public int averageEndThreshold = 100000;
+    public int goodEndThreshold = 1000000;
+
+    private TextMeshProUGUI timerText;
+    private ScoreManager scoreManager;
     private float totalTimeInSeconds = 300f;
 
     void Start() {
+        timerText = GetComponent<TextMeshProUGUI>();
+        scoreManager = FindObjectOfType<ScoreManager>();
         StartCoroutine(StartCountdown());
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Minus)) {
+            OnCountdownFinished();
+        }
     }
 
     private IEnumerator StartCountdown() {
@@ -25,6 +37,12 @@ public class CountdownTimer : MonoBehaviour {
     }
 
     private void OnCountdownFinished() {
-        SceneManager.LoadScene("GameOver");
+        if (scoreManager.currentScore < averageEndThreshold) {
+            SceneManager.LoadScene("GameOverBad");
+        } else if (scoreManager.currentScore < goodEndThreshold) {
+            SceneManager.LoadScene("GameOverAverage");
+        } else {
+            SceneManager.LoadScene("GameOverGood");
+        }
     }
 }

@@ -10,9 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeec171beecf8ac4eafb1d5b787c9302, type: 3}
-  m_Name: TrendObjects
+  m_Name: _TrendObjects
   m_EditorClassIdentifier: 
   trendObjects:
+  - {fileID: 11400000, guid: 5c75ab58dd7be904090f6c84ab42c74a, type: 2}
+  - {fileID: 11400000, guid: 70e7a430fa62f2f4eb3afa61570aa93c, type: 2}
+  - {fileID: 11400000, guid: 6326d894b18420844afbf5da27589334, type: 2}
+  - {fileID: 11400000, guid: b8b81c464e7f4f2439a094bc6d8dcc1b, type: 2}
   - {fileID: 11400000, guid: 0d4ff716846137a45bfefb486de69791, type: 2}
   - {fileID: 11400000, guid: 1e4207d4eb6e9ff45938f05d9f44c436, type: 2}
+  - {fileID: 11400000, guid: 7eb41aa4516f5164e8bcad2359730051, type: 2}
+  - {fileID: 11400000, guid: 9ffcc08413aa8db4db53759b422cec82, type: 2}
+  - {fileID: 11400000, guid: 6b3606a896dbef745af0c92a0175c5e8, type: 2}
+  - {fileID: 11400000, guid: 3bf3b3db8256cfb4cbd6182376d5e3d8, type: 2}
   - {fileID: 11400000, guid: ec3713e750e7bda46884761ed1df17ba, type: 2}

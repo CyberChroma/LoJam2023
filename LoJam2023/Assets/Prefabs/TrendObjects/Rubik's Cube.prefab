@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5723112576442960517}
   - component: {fileID: 4998864079201293316}
-  - component: {fileID: 9030047932722932855}
   - component: {fileID: 5294073906852255958}
+  - component: {fileID: 6905513850039725909}
   m_Layer: 0
-  m_Name: JackOLantern
+  m_Name: Rubik's Cube
   m_TagString: TrendObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.264, z: -0.04479003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2589273773967340573}
@@ -62,8 +62,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &9030047932722932855
-BoxCollider2D:
+--- !u!114 &5294073906852255958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718218751919762528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176102ef89a269047bfe4696384fc3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisappearing: 0
+--- !u!60 &6905513850039725909
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,23 +117,15 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &5294073906852255958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6718218751919762528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 176102ef89a269047bfe4696384fc3e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: 100
-  isDisappearing: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.0003761351, y: -1.670783}
+      - {x: 1.4391569, y: -0.98814905}
+      - {x: 1.4806631, y: 0.7901064}
+      - {x: -0.010909587, y: 1.471539}
+      - {x: -1.4418032, y: 0.8020414}
+      - {x: -1.4568553, y: -0.98952067}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7065980550133923666
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +199,7 @@ SpriteRenderer:
   m_SortingLayerID: 383699673
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 88152beadc392be46aa789f42eda326c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd146b88ce415dc43b130c128ea680be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

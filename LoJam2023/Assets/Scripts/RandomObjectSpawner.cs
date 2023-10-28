@@ -58,7 +58,7 @@ public class RandomObjectSpawner : MonoBehaviour
         // If the ray hits the floor, set the object's position to the hit point
         if (hit.collider != null) {
             Vector2 floorContactPoint = hit.point;
-            newTrendObject.transform.position = new Vector3(floorContactPoint.x, floorContactPoint.y, newTrendObject.transform.position.z);
+            newTrendObject.transform.position = new Vector3(floorContactPoint.x, floorContactPoint.y + 0.5f, newTrendObject.transform.position.z);
         }
     }
 
